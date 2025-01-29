@@ -7,9 +7,9 @@ const TodoList = () => {
 
   return (
       <ul data-testid='TodoList'>
-        {todoContext?.todos.map((todo) => (
-            <li key={todo.id}>{todo.title}</li>
-        ))}
+          {Array.isArray(todoContext?.todos) && todoContext.todos.map((todo) => (
+              <li key={todo.id}>{todo.title}</li>
+          ))}
       </ul>
   )
 }
