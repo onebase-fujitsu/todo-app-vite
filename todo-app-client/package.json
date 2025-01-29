@@ -13,8 +13,10 @@
     "fix": "npm run format && npm run lint:fix"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.34",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
