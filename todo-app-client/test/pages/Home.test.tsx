@@ -5,6 +5,7 @@ import axios from 'axios'
 import Home from '../../src/pages/Home'
 import TodoProvider from '../../src/context/TodoContext'
 import {act} from "react";
+import {BrowserRouter} from "react-router-dom";
 
 describe('Home画面', () => {
     let mock: MockAdapter
@@ -22,7 +23,7 @@ describe('Home画面', () => {
         mock.onGet('/todos').reply(200, [])
 
         await act(() => {
-            render(<Home />)
+            render(<Home />, {wrapper: BrowserRouter})
         })
 
         expect(screen.queryByTestId('Header')).toBeTruthy()
@@ -39,7 +40,7 @@ describe('Home画面', () => {
         ])
 
         await act(() => {
-            render(<TodoProvider><Home /></TodoProvider>)     // 修正
+            render(<TodoProvider><Home /></TodoProvider>, {wrapper: BrowserRouter})     // 修正
         })
 
         expect(mock.history.get[0].url).toEqual('/todos')
