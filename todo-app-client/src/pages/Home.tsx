@@ -1,27 +1,17 @@
 // Home.tsx
-import {useContext, useEffect} from 'react'
+import styled from 'styled-components'
 import TodoList from '../components/TodoList'
 import Header from '../components/Header'
-import {getTodos} from '../features/TodoApi'
-import {TodoContext} from '../context/TodoContext'
 
-const Home = () => {
-  const todoContext = useContext(TodoContext)
+const Div = styled.div`
+  display: flex;
+`
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getTodos()
-      todoContext?.setTodos(response)
-    }
-    fetchData()
-  }, [])
-
-  return (
-    <div>
+const Home = () => (
+    <Div>
       <Header />
       <TodoList />
-    </div>
-  )
-}
+    </Div>
+)
 
 export default Home

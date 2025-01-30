@@ -1,6 +1,8 @@
 // NewTaskForm.tsx
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import styled from 'styled-components'
+import {TodoContext} from '../context/TodoContext'
+import {postTodos} from '../features/TodoApi'
 
 const Wrapper = styled.form`
   width: 100%;
@@ -66,8 +68,25 @@ const Button = styled.button`
   font-family: inherit;
   font-size: 100%;
 `
+
 const NewTaskForm = () => {
   const [taskInput, setTaskInput] = useState('')
+  const todoContext = useContext(TodoContext)
+
+  const handleSend = () => {
+    postTodos(taskInput)
+      .then((res) =>
+        todoContext?.setTodos([
+          ...todoContext.todos,
+          {
+            id: res.id,
+            title: res.title,
+            completed: res.completed,
+          },
+        ]),
+      )
+      .catch(() => {})
+  }
 
   return (
     <Wrapper data-testid="NewTaskForm">
@@ -85,7 +104,9 @@ const NewTaskForm = () => {
           </Label>
         </DivLabel>
       </DivForm>
-      <Button type="button">Send</Button>
+      <Button type="button" onClick={() => handleSend()}>
+        Send
+      </Button>
     </Wrapper>
   )
 }

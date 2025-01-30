@@ -1,18 +1,47 @@
-// NewTask.test.tsx
-import {cleanup, render, screen} from '@testing-library/react'
-import {BrowserRouter} from 'react-router-dom'
-import NewTask from "../../src/pages/NewTask";
+// NewTaskForm.test.tsx
+import {cleanup, fireEvent, render, screen} from '@testing-library/react'
+import NewTaskForm from "../../src/components/NewTaskForm";
+import MockAdapter from 'axios-mock-adapter'
+import axios from 'axios'
 
-describe('タスク作成画面', () => {
+
+describe('NewEntryFormコンポーネント', () => {
+    let mock: MockAdapter
+
+    beforeEach(() => {
+        mock = new MockAdapter(axios)
+    })
 
     afterEach(() => {
+        mock.reset()
         cleanup()
     })
 
-    it('画面構成', async () => {
-        render(<NewTask />, {wrapper: BrowserRouter})
+    it("初期表示", () => {
+        render(<NewTaskForm/>)
 
-        expect(screen.queryByTestId('Header')).toBeTruthy()
-        expect(screen.queryByTestId('NewTaskForm')).toBeInTheDocument()
+        expect(screen.queryByLabelText('Title')).toBeTruthy()
+        expect(screen.getByTestId("TitleInput")).toHaveValue('')
+        expect(screen.queryByText('Send')).toBeTruthy()
+    })
+
+    it("タスク名を編集できる", () => {
+        render(<NewTaskForm/>)
+        fireEvent.change(screen.getByTestId('TitleInput'), {
+            target: {value: 'title text'
+        }})
+
+        expect(screen.getByTestId("TitleInput")).toHaveValue('title text')
+    })
+
+    it("作成ボタンを押したら、作成がリクエストされる",  () => {
+        render(<NewTaskForm />)
+        fireEvent.change(screen.getByTestId('TitleInput'), {
+            target: {value: 'title text'},
+        })
+        fireEvent.click(screen.getByText('Send'))
+
+        expect(mock.history.post[0].url).toEqual('/todos')
+        expect(mock.history.post[0].data).toEqual(JSON.stringify({title: 'title text'}))
     })
 })
