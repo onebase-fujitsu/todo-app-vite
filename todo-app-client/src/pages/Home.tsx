@@ -8,10 +8,10 @@ const Div = styled.div`
 `
 
 const Home = () => (
-    <Div>
-      <Header />
-      <TodoList />
-    </Div>
+  <Div>
+    <Header />
+    <TodoList />
+  </Div>
 )
 
 export default Home
