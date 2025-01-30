@@ -8,10 +8,10 @@ const Div = styled.div`
 `
 
 const NewTask = () => (
-    <Div data-testid="NewTask" className="flex">
-        <Header />
-        <NewTaskForm />
-    </Div>
+  <Div data-testid="NewTask" className="flex">
+    <Header />
+    <NewTaskForm />
+  </Div>
 )
 
 export default NewTask

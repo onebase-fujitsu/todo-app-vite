@@ -6,22 +6,22 @@ import {getTodos} from '../features/TodoApi'
 import {TodoContext} from '../context/TodoContext'
 
 const Home = () => {
-    const todoContext = useContext(TodoContext)
+  const todoContext = useContext(TodoContext)
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await getTodos()
-            todoContext?.setTodos(response)
-        }
-        fetchData()
-    }, [])
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getTodos()
+      todoContext?.setTodos(response)
+    }
+    fetchData()
+  }, [])
 
-    return (
-        <div>
-            <Header />
-            <TodoList />
-        </div>
-    )
+  return (
+    <div>
+      <Header />
+      <TodoList />
+    </div>
+  )
 }
 
 export default Home

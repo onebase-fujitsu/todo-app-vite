@@ -7,11 +7,11 @@ import TodoProvider from './context/TodoContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-    <React.StrictMode>
-        <TodoProvider>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </TodoProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <TodoProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </TodoProvider>
+  </React.StrictMode>,
 )

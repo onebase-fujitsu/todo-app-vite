@@ -6,11 +6,10 @@ const TodoList = () => {
   const todoContext = React.useContext(TodoContext)
 
   return (
-      <ul data-testid='TodoList'>
-          {Array.isArray(todoContext?.todos) && todoContext.todos.map((todo) => (
-              <li key={todo.id}>{todo.title}</li>
-          ))}
-      </ul>
+    <ul data-testid="TodoList">
+      {Array.isArray(todoContext?.todos) &&
+        todoContext.todos.map((todo) => <li key={todo.id}>{todo.title}</li>)}
+    </ul>
   )
 }
 
