@@ -2,14 +2,14 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {Task} from '@styled-icons/material-sharp/'
-import {Home} from '@styled-icons/material'
+import { Home} from '@styled-icons/material'
 
 const Wrapper = styled.div`
-  height: 100vh;
-  width: 12rem;
-  border-right-width: 1px;
-  border-right-style: solid;
-  border-right-color: #e5e7eb;
+    height: 100vh;
+    width: 12rem;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #e5e7eb;
 `
 
 const H1 = styled.h1`
@@ -51,23 +51,23 @@ const H2 = styled.h2`
 `
 
 const Header = () => (
-  <Wrapper data-testid="Header">
-    <H1>Todo App</H1>
-    <Div>
-      <StyledLink to="/">
-        <H2>
-          <StyledHome />
-          Home
-        </H2>
-      </StyledLink>
-      <StyledLink to="/newTask">
-        <H2>
-          <StyledTask />
-          New Task
-        </H2>
-      </StyledLink>
-    </Div>
-  </Wrapper>
+    <Wrapper data-testid="Header">
+        <H1>Todo App</H1>
+        <Div>
+            <StyledLink to="/">
+                <H2>
+                    <StyledHome />
+                    Home
+                </H2>
+            </StyledLink>
+            <StyledLink to="/newTask">
+                <H2>
+                    <StyledTask />
+                    New Task
+                </H2>
+            </StyledLink>
+        </Div>
+    </Wrapper>
 )
 
 export default Header
